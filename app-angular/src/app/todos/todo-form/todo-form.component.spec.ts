@@ -36,4 +36,15 @@ describe('TodoFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit Todo on submit', () => {
+    const spy = jasmine.createSpy('todoCreated');
+    component.onAddTodo.subscribe(spy);
+    component.todo = 'New Todo';
+
+    const formElement: HTMLFormElement = fixture.nativeElement.querySelector('form');
+    formElement.dispatchEvent(new SubmitEvent('submit', { cancelable: true, bubbles: true }));
+
+    expect(spy).toHaveBeenCalledWith('New Todo');
+  });
 });
