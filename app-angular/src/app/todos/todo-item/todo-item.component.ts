@@ -7,7 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class TodoItemComponent {
 
-  @Input()
-  public todo: string;
+  @Input() todo: string;
 
 }

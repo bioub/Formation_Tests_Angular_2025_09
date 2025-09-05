@@ -1,3 +1,11 @@
-<p>
-  Welcome
-</p>
+<div class="home">
+  Welcome !
+</div>
+
+
+<app-counter [count]="value" (countChange)="value = $event"></app-counter>
+<app-counter [(count)]="value"></app-counter>
+
+<div>
+  Value : {{ value }}
+</div>

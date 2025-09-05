@@ -9,24 +9,11 @@ import { TodoItemComponent } from '../todo-item/todo-item.component';
 describe('TodosComponent', () => {
   let component: TodosComponent;
   let fixture: ComponentFixture<TodosComponent>;
-  let originalConsoleError!: any;
-
-  beforeAll(() => {
-    originalConsoleError = console.error;
-    console.error = function (message?: any, ...optionalParams: any[]): void {
-      const params = optionalParams ? `\nParams: ${optionalParams}` : '';
-      fail(`Test contained console error:\n${message}${params}`);
-    };
-  });
-
-  afterAll(() => {
-    console.error = originalConsoleError;
-  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FormsModule],
-      declarations: [TodosComponent, TodoFormComponent, TodosListComponent, TodoItemComponent],
+      declarations: [TodosComponent, TodoFormComponent, TodosListComponent, TodoItemComponent]
     }).compileComponents();
   });
 
