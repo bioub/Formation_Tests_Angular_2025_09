@@ -14,7 +14,8 @@ describe('CounterComponent', () => {
 
     fixture = TestBed.createComponent(CounterComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture.detectChanges(); // sert au maj de prop type component.count = 4;
+    fixture.autoDetectChanges(); // ne sert que pour les (click), (submit), ...
   });
 
   it('should create', () => {
@@ -51,11 +52,16 @@ describe('CounterComponent', () => {
   it('should increment the count on button click', () => {
     const spy = jasmine.createSpy('countChange');
     component.count = 5;
+    fixture.detectChanges();
+    
+    const button = fixture.nativeElement.querySelector('button');
+    expect(button.innerText).toBe('5');
 
     component.countChange.subscribe(spy);
-
-    const button = fixture.nativeElement.querySelector('button');
     button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+
+    
+    expect(button.innerText).toBe('6');
 
     expect(spy).toHaveBeenCalledWith(6);
   });
