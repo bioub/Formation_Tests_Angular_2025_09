@@ -2,7 +2,7 @@ export class Timer {
   a = 0;
   b = 0;
 
-  ngOnInit() {
+  start() {
     setTimeout(() => {
       this.a = 1;
     }, Math.random() * 4000);
