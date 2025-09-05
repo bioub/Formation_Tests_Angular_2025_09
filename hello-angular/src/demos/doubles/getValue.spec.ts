@@ -15,7 +15,6 @@ describe('getValue function', () => {
 
   it('should return value within field', () => {
     const prenomEl = document.createElement('input');
-    prenomEl.id = 'prenom'
     prenomEl.value = 'Romain';
 
     const originalFunction = document.querySelector;

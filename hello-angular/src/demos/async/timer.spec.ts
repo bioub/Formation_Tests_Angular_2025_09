@@ -3,7 +3,7 @@ import { Timer } from "./timer";
 describe('timer class', () => {
   it('should increment a and b', (done) => {
     const timer = new Timer();
-    timer.start();
+    timer.ngOnInit();
 
     setTimeout(() => {
       expect(timer.a).toBe(1);
