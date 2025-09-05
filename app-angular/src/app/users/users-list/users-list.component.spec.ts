@@ -3,6 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { UsersListComponent } from './users-list.component';
+import { UserService } from '../user.service';
+import { of } from 'rxjs';
 
 describe('UsersListComponent', () => {
   let component: UsersListComponent;
@@ -31,10 +33,23 @@ describe('UsersListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(UsersListComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    // fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should show data from UserService', () => {
+    const usersService = TestBed.inject(UserService);
+    spyOn(usersService, 'getList$').and.returnValue(of([
+      { id: 1, name: 'User 1', email: 'test@test.com' },
+      { id: 2, name: 'User 2', email: 'test2@test.com' }
+    ]));
+
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.innerText).toContain('User 1');
+    expect(fixture.nativeElement.innerText).toContain('User 2');
   });
 });
